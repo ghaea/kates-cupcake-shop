@@ -43,6 +43,15 @@ var cupcakeShop = {
   */
   addFlavor: function(type) {
 
+    if (type in cupcakeShop.inventory) {
+
+      return cupcakeShop}
+
+     else { 
+
+      return cupcakeShop.inventory[type] = 0
+    }
+
   },
 
   /*
@@ -52,6 +61,12 @@ var cupcakeShop = {
   */
   removeFlavor: function(type) {
 
+    if (type in cupcakeShop.inventory) {
+
+      delete cupcakeShop.inventory[type]
+    }
+
+
   },
 
   /*
@@ -59,6 +74,7 @@ var cupcakeShop = {
   */
   listFlavors: function() {
 
+    return Object.keys(cupcakeShop.inventory)
   },
 
   /*
@@ -69,6 +85,12 @@ var cupcakeShop = {
   */
   showStock: function(flavor) {
 
+    if (flavor in cupcakeShop.inventory) {
+
+      return cupcakeShop.inventory[flavor]
+    }
+
+    return 0
   },
 
 
@@ -82,6 +104,13 @@ var cupcakeShop = {
       If that flavor DOESN'T exist in the inventory, do nothing.
   */
   restock: function(flavor, count) {
+
+    if (flavor in cupcakeShop.inventory) {
+      
+      cupcakeShop.inventory[flavor] += count
+    }
+
+    return cupcakeShop.inventory
 
   },
 
@@ -98,6 +127,22 @@ var cupcakeShop = {
   */
   makeSale: function(flavor) {
 
+    if (cupcakeShop.inventory[flavor] === 0) {
+      
+      return false
+    }  
+
+    if (flavor in cupcakeShop.inventory) {
+
+      cupcakeShop.inventory[flavor] -= 1
+
+      cupcakeShop.register += cupcakeShop.price
+
+      return true
+    }
+
+    return false
+
   },
 
   /*
@@ -108,6 +153,10 @@ var cupcakeShop = {
   */
   reconcile: function() {
 
+    cupcakeShop.bank += cupcakeShop.register
+
+    cupcakeShop.register = 0
+
   },
 
   /*
@@ -115,6 +164,8 @@ var cupcakeShop = {
       (Note: This shop does not ever sell cookies. It is a cupcake shop.)
   */
   sellsCookies: function() {
+
+    return false
     
   }
 
