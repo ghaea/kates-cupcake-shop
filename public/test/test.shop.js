@@ -266,4 +266,29 @@ describe("Kate's Cupcake Shop LLC. A Delaware Company", function(){
 
   });
 
+  //Start of hard mode
+
+  describe("cupcakeShop.discountSale", function(){
+
+    it("exists", function () {
+      expect(cupcakeShop.discountSale).to.be.a("function");
+    });
+
+    it("returns the discounted price of cupcake", function() {
+      resetShop();
+
+      cupcakeShop.inventory = {
+        chocolate: 5,
+        strawberry: 3
+      }
+
+      var discountResult = cupcakeShop.discountSale("chocolate", 50)
+
+      expect(cupcakeShop.register).to.equal(1.5);
+    })
+  })
+
+
 });
+
+

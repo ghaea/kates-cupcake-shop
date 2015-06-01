@@ -128,7 +128,7 @@ var cupcakeShop = {
   makeSale: function(flavor) {
 
     if (cupcakeShop.inventory[flavor] === 0) {
-      
+
       return false
     }  
 
@@ -167,9 +167,34 @@ var cupcakeShop = {
 
     return false
     
-  }
+  },
+
+  /*
+    shop.discountSale: Accepts a string as parameter, representing a cupcake flavor.
+
+
+        add the price of a cupcake times 50% to the register,
+     
+  */
+  discountSale: function(flavor, discountPercent) {
+
+      var discount = discountPercent/100
+
+    if (flavor in cupcakeShop.inventory) {
+
+      cupcakeShop.inventory[flavor] -= 1
+
+      cupcakeShop.register += (cupcakeShop.price * discount)
+
+      return cupcakeShop.register
+    }
+
+  },
+
 
 }
+
+
 
 
 /*
